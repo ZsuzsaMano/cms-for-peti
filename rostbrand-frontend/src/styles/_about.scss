@@ -3,12 +3,12 @@
 .about{
   display:flex;
   flex-wrap: wrap;
-  min-height: 90vh;
+  min-height: 80vh;
   overflow: hidden;
   background-color: $main-color;
   color:$font-color;
 
-  .text{
+  .wrapper{
     display: flex;
     flex-direction: column;
     justify-content: center;

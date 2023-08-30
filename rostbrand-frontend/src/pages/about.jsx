@@ -17,7 +17,7 @@ const About = ()=>{
       }, []);
     
       // This function updates the component with the
-      // current todo data stored in the server
+      // current about data stored in the server
       function get() {
         fetch(`${process.env.REACT_APP_BACKEND}api/abouts/`)
           .then(res => res.json())
@@ -31,7 +31,7 @@ const About = ()=>{
 
 return <Layout>
  <section className="about" id="about">
-    <div className="text">
+    <div className="wrapper">
     <p>{bio}</p>   
   <button><a href="/contact">Contact Me</a></button>
     </div>
