@@ -1,26 +1,45 @@
-import * as React from "react"
+import ReactMarkdown from 'react-markdown'
 import Layout from "../components/layout"
 import artistImg from "../images/peti.jpg";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const About = ()=>{
+
+
+      const [bio, setBio] = useState("");
+      const [info, setInfo] = useState("");
+    
+      useEffect(() => {
+        // update update the list of todos
+        // when the component is rendered for the first time
+        get();
+      }, []);
+    
+      // This function updates the component with the
+      // current todo data stored in the server
+      function get() {
+        fetch(`${process.env.REACT_APP_BACKEND}api/abouts/`)
+          .then(res => res.json())
+          .then(about => {
+            setBio(about.data[0].attributes.Biography);
+            setInfo(about.data[0].attributes.Info);
+            console.log(about.data[0].attributes);
+          })
+      }
+
 
 return <Layout>
  <section className="about" id="about">
     <div className="text">
-    <p>In my work I focus on the different appearances of decay and the associations surrounding it. I am looking for the ideal form of incompleteness as well as completeness within decay. The imagery of comics is timeless and universal therefore it provides me with a great range of freedom. By now I have a different perspective on comics. They present me with the ideal raw material for dealing with topics like fear, confusion, loss of identity and hero cults. In my work the world of the superheroes is upside down, balancing between chaos and order. </p>
-     <button><a href="./contact.html">Contact Me</a></button>
+    <p>{bio}</p>   
+  <button><a href="/contact">Contact Me</a></button>
     </div>
     <div className="image">
       <img src={artistImg} alt="Peter Tauber" id="peti"/>
       <div className="card-text">
-        <ul>
-          <li>
-            Born in Budapest 1983
-          </li>
-          <li>2010 -2017 study on the Academy of Fine arts
-             Vienna in the class of Prof. Daniel Richter.</li>
-             <li>Currently lives and works in Vienna, Austria.</li>
-        </ul>
+        <ReactMarkdown>{info}</ReactMarkdown>
+       
       </div>
     </div>
   </section>
