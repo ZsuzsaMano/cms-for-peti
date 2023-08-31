@@ -1,4 +1,4 @@
-import * as React from "react"
+
 import insta from "../images/insta.png"
 import facebook from "../images/facebook.png"
 import kah from "../images/kah.png";
@@ -19,8 +19,6 @@ return (
         <img
           src={insta}
           alt="instagram"
-          target="_blank"
-          rel="noreferrer"
         />
       </a>
       <a
