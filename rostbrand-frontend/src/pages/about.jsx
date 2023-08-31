@@ -1,7 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import Layout from "../components/layout"
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const About = ()=>{
 
