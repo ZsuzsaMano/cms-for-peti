@@ -10,13 +10,13 @@ const Header = () => {
   const [navItems, setNavItems] = useState([]);
 
   useEffect(() => {
-    // update update the list of todos
+    // update the nav list
     // when the component is rendered for the first time
     get();
   }, []);
 
   // This function updates the component with the
-  // current contact data stored in the server
+  // current navigation menu data stored in the server
   function get() {
     fetch(`${process.env.REACT_APP_BACKEND}api/navigations`)
       .then((res) => res.json())

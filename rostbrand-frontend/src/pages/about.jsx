@@ -11,7 +11,7 @@ const About = ()=>{
 
     
       useEffect(() => {
-        // update update the list of todos
+        // update the about data
         // when the component is rendered for the first time
         get();
       }, []);

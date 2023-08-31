@@ -11,7 +11,7 @@ const Contact = ()=>{
      
     
       useEffect(() => {
-        // update update the list of todos
+        // update the contact data
         // when the component is rendered for the first time
         get();
       }, []);
