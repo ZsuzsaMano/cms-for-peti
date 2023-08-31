@@ -1,14 +1,14 @@
 import ReactMarkdown from 'react-markdown'
 import Layout from "../components/layout"
-import artistImg from "../images/peti.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
 
 const About = ()=>{
 
 
-      const [bio, setBio] = useState("");
-      const [info, setInfo] = useState("");
+      const [aboutData, setAboutData] = useState({Biography:'', Info:''});
+      const [imgData, setImgData] = useState({alternativeText:'', url:''});
+
     
       useEffect(() => {
         // update update the list of todos
@@ -19,14 +19,25 @@ const About = ()=>{
       // This function updates the component with the
       // current about data stored in the server
       function get() {
-        fetch(`${process.env.REACT_APP_BACKEND}api/abouts/`)
+        fetch(`${process.env.REACT_APP_BACKEND}api/abouts?populate=*`)
           .then(res => res.json())
           .then(about => {
-            setBio(about.data[0].attributes.Biography);
-            setInfo(about.data[0].attributes.Info);
-            console.log(about.data[0].attributes);
+           setAboutData(about.data[0].attributes);
+setImgData(about.data[0].attributes.Peti.data.attributes)
+
           })
       }
+
+  
+      const bio = aboutData.Biography
+      const info = aboutData.Info
+      const alternativeText = imgData.alternativeText
+
+console.log('alternativeText', alternativeText)
+
+
+console.log('bio', bio)
+console.log('aboutData', aboutData)
 
 
 return <Layout>
@@ -36,7 +47,7 @@ return <Layout>
   <button><a href="/contact">Contact Me</a></button>
     </div>
     <div className="image">
-      <img src={artistImg} alt="Peter Tauber" id="peti"/>
+      <img src={process.env.REACT_APP_BACKEND + imgData?.url.substring(1)} alt={alternativeText} id="peti"/>
       <div className="card-text">
         <ReactMarkdown>{info}</ReactMarkdown>
        
