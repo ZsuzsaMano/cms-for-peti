@@ -34,8 +34,8 @@ const Header = () => {
         </a>
       </div>
       <ul className={`nav-links ${navActive ? "nav-active" : ""}`}>
-        {navItems.map((item) => (
-          <li>
+        {navItems.map((item, i ) => (
+          <li key={i}>
             <a href={item.href}>{item.displayText}</a>
           </li>
         ))}
