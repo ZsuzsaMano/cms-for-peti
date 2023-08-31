@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/layout"
-import contactImg from "../images/contact.jpg";
 
 
 const Contact = ()=>{
 
       const [email, setEmail] = useState("");
+      // from the image data I will use only the url and the alt text
+      const [imgData, setImgData] = useState({alternativeText:'', url:''});
+
      
     
       useEffect(() => {
@@ -15,15 +17,21 @@ const Contact = ()=>{
       }, []);
     
       // This function updates the component with the
-      // current about data stored in the server
+      // current contact data stored in the server
       function get() {
-        fetch(`${process.env.REACT_APP_BACKEND}api/contacts/`)
+        fetch(`${process.env.REACT_APP_BACKEND}api/contacts?populate=*`)
           .then(res => res.json())
           .then(contact => {
             setEmail(contact.data[0].attributes.Email);
-      
+          //I save the image data separatly as it is on a deeper level
+            setImgData(contact.data[0].attributes.Image.data.attributes)
           })
       }
+
+const alternativeText = imgData.alternativeText
+
+//the base url ends with '/' and the url of the img starts with one, so I have to remove one of them
+const url = process.env.REACT_APP_BACKEND + imgData?.url.substring(1)
 
 return <Layout>
   <section className="contact">
@@ -38,7 +46,7 @@ return <Layout>
     <p className="email">{email}</p>
       </div>
       <div className="image">
-        <img src={contactImg} alt="Tauber Peter"/>
+        <img src={url} alt={alternativeText} />
       </div>
   </section>
   </Layout>

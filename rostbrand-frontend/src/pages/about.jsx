@@ -33,12 +33,6 @@ setImgData(about.data[0].attributes.Peti.data.attributes)
       const info = aboutData.Info
       const alternativeText = imgData.alternativeText
 
-console.log('alternativeText', alternativeText)
-
-
-console.log('bio', bio)
-console.log('aboutData', aboutData)
-
 
 return <Layout>
  <section className="about" id="about">
