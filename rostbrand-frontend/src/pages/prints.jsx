@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/captions.css";
 import PhotoAlbum from "react-photo-album";
 
 
@@ -41,6 +44,8 @@ const Prints = () => {
     src:
       process.env.REACT_APP_BACKEND +
       img.attributes.formats.medium.url.substring(1),
+    title: "Slide title",
+    description: "Slide description",
   }));
 
   return (
@@ -59,7 +64,7 @@ const Prints = () => {
           index={index}
           close={() => setIndex(-1)}
           slides={displayPrints}
-          plugins={[]}
+          plugins={[Captions]}
         />
       </div>
     </Layout>
