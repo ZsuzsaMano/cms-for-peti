@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import Lightbox from "yet-another-react-lightbox";
 import PhotoAlbum from "react-photo-album";
-import { paintings } from "../components/imgs";
 
 const Paintings = () => {
   const [index, setIndex] = useState(-1);
