@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import Lightbox from "yet-another-react-lightbox";
 import PhotoAlbum from "react-photo-album";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
+
 
 const Prints = () => {
   const [index, setIndex] = useState(-1);
@@ -13,13 +10,13 @@ const Prints = () => {
   const [imgArray, setImgArray] = useState([]);
 
   useEffect(() => {
-    // update the about data
+    // update the prints image data
     // when the component is rendered for the first time
     get();
   }, []);
 
   // This function updates the component with the
-  // current about data stored in the server
+  // current prints images data stored in the server
   function get() {
     fetch(`${process.env.REACT_APP_BACKEND}api/prints?populate=*`)
       .then((res) => res.json())
@@ -28,7 +25,7 @@ const Prints = () => {
       });
   }
 
-
+  // this function is to prepare the data in a format required for the thumbnails album below
   const displayPrintsThumbnail = imgArray.map((img) => ({
     width: img.attributes.formats.small.width,
     height: img.attributes.formats.small.height,
@@ -37,6 +34,7 @@ const Prints = () => {
       img.attributes.formats.small.url.substring(1),
   }));
 
+  // this function is to prepare the data in a format required for the lightbox below
   const displayPrints = imgArray.map((img) => ({
     width: img.attributes.formats.medium.width,
     height: img.attributes.formats.medium.height,
@@ -45,8 +43,6 @@ const Prints = () => {
       img.attributes.formats.medium.url.substring(1),
   }));
 
-
-
   return (
     <Layout>
       <div className="gallery">
@@ -54,7 +50,7 @@ const Prints = () => {
           layout="rows"
           spacing={40}
           photos={displayPrintsThumbnail}
-          targetRowHeight={200}
+          targetRowHeight={300}
           onClick={({ index }) => setIndex(index)}
         />
 
@@ -63,7 +59,7 @@ const Prints = () => {
           index={index}
           close={() => setIndex(-1)}
           slides={displayPrints}
-          plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+          plugins={[]}
         />
       </div>
     </Layout>

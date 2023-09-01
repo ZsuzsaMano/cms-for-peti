@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "paintings",
+  "info": {
+    "singularName": "painting",
+    "pluralName": "paintings",
+    "displayName": "Painting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Paintings": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

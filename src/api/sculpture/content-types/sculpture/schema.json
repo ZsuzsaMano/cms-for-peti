@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sculptures",
+  "info": {
+    "singularName": "sculpture",
+    "pluralName": "sculptures",
+    "displayName": "Sculpture"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sculptures": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
