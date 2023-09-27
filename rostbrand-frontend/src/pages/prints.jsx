@@ -69,6 +69,6 @@ const Prints = () => {
       </div>
     </Layout>
   );
-};
+}
 
 export default Prints;
